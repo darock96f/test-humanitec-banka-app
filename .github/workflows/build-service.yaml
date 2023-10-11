@@ -62,8 +62,7 @@ jobs:
         humanitec-token: ${{ secrets.HUMANITEC_TOKEN }}
         organization: ${{ inputs.HUMANITEC_ORG }}
         tag: ${IMAGE_NAME}:${IMAGE_TAG}
-      working-directory: ./${{ inputs.service-name }}
-#          context: ./${{ inputs.service-name }}
+        context: ./${{ inputs.service-name }}
 #      run: docker build . --tag ${IMAGE_NAME}:${IMAGE_TAG}
 #      working-directory: ./${{ inputs.service-name }}
 
