@@ -65,7 +65,7 @@ jobs:
       with:
         humanitec-token: ${{ secrets.HUMANITEC_TOKEN }}
         organization: ${{ inputs.HUMANITEC_ORG }}
-        existing-image: ${IMAGE_NAME}:${IMAGE_TAG}
+        existing-image: "'${IMAGE_NAME}':'${IMAGE_TAG}'"
     
     - name: Tag Latest
       run: docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest && docker push ${IMAGE_NAME}:latest
