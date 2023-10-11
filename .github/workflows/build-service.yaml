@@ -54,9 +54,9 @@ jobs:
         echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_OUTPUT
       id: settag
 
-    - name: Build docker image
-      run: docker build . --tag ${IMAGE_NAME}:${IMAGE_TAG}
-      working-directory: ./${{ inputs.service-name }}
+#    - name: Build docker image
+#      run: docker build . --tag ${IMAGE_NAME}:${IMAGE_TAG}
+#      working-directory: ./${{ inputs.service-name }}
 
     - uses: humanitec/build-push-to-humanitec@v1
       name: Build and push the Docker image with humanitec plugin
@@ -65,9 +65,10 @@ jobs:
         organization: ${{ inputs.HUMANITEC_ORG }}
         image-name: ${{ env.IMAGE_NAME }}
         tag: ${{ env.IMAGE_TAG }}
+        context: ./${{ inputs.service-name }}
     
-    - name: Tag Latest
-      run: docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
+#    - name: Tag Latest
+#      run: docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
 
     - uses: humanitec/build-push-to-humanitec@v1
       name: Build and push the Docker image with humanitec plugin
@@ -76,3 +77,4 @@ jobs:
         organization: ${{ inputs.HUMANITEC_ORG }}
         image-name: ${{ env.IMAGE_NAME }}
         tag: latest
+        context: ./${{ inputs.service-name }}
